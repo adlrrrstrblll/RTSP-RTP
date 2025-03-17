@@ -24,10 +24,11 @@ public class RTPpacket{
   //Bitstream of the RTP payload
   public byte[] payload;
 
-  //PLACEHOLDER BECAUSE THERE IS AN ERROR IN THE UNSIGNED_INT
-    private int unsigned_int(byte b) {
-        return b & 0xFF;  // Converts byte to an unsigned int (0-255)
+  // Implemented an unsigned integer method to avoid errors
+  private int unsigned_int(byte b) {
+        return b & 0xFF;  
     }
+
 
   //--------------------------
   //Constructor of an RTPpacket object from header fields and payload bitstream
@@ -57,10 +58,11 @@ public class RTPpacket{
 
     //header[0] = ...
     // .....
-      header[0] = (byte) ((Version << 6) | (0) | CC);
-      header[1] = (byte) ((0) | (PayloadType & 0x7F));
-      header[2] = (byte) ((SequenceNumber >> 8) & 0xFF); // High byte
-      header[3] = (byte) (SequenceNumber & 0xFF);        // Low byte
+
+      header[0] = (byte) ((Version << 6) | CC);
+      header[1] = (byte) ((PayloadType & 0x7F));
+      header[2] = (byte) ((SequenceNumber >> 8) & 0xFF); 
+      header[3] = (byte) (SequenceNumber & 0xFF);       
       header[4] = (byte) ((TimeStamp >> 24) & 0xFF);
       header[5] = (byte) ((TimeStamp >> 16) & 0xFF);
       header[6] = (byte) ((TimeStamp >> 8) & 0xFF);
@@ -184,25 +186,21 @@ public class RTPpacket{
   //--------------------------
   public void printheader()
   {
-      // test later if declaring it here would do something = int nb;
     //TO DO: uncomment
-      /* This is the original code that
-    for (int i=0; i < (HEADER_SIZE-4); i++)
-    {
-        for (int j = 7; j>=0 ; j--)
-        {
-            if (1<= 0)
-                return(nb);
-            else
-                return(256+nb);
-        }
-    }
+    // for (int i=0; i < (HEADER_SIZE-4); i++){
+    //     for (int j = 7; j>=0 ; j--){
+    //         if (1<= 0)
+    //             return(nb);
+    //         else
+    //             return(256+nb);
+    //     }
+    // }
 
-       */
-      for (int i = 0; i < HEADER_SIZE; i++) {
+    for (int i = 0; i < HEADER_SIZE; i++) {
           String binaryString = String.format("%8s", Integer.toBinaryString(header[i] & 0xFF)).replace(' ', '0');
           System.out.print(binaryString + " ");
       }
       System.out.println();
+
   }
 }
