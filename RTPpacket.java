@@ -187,20 +187,12 @@ public class RTPpacket{
   public void printheader()
   {
     //TO DO: uncomment
-    // for (int i=0; i < (HEADER_SIZE-4); i++){
-    //     for (int j = 7; j>=0 ; j--){
-    //         if (1<= 0)
-    //             return(nb);
-    //         else
-    //             return(256+nb);
-    //     }
-    // }
-
-    for (int i = 0; i < HEADER_SIZE; i++) {
-          String binaryString = String.format("%8s", Integer.toBinaryString(header[i] & 0xFF)).replace(' ', '0');
-          System.out.print(binaryString + " ");
-      }
-      System.out.println();
-
+    for (int i=0; i < (HEADER_SIZE-4); i++){
+        for (int j = 7; j>=0 ; j--){
+            int nb = (header[i] >> j) & 1;
+            System.err.println("nb");
+        }
+    }
+    System.err.println(" ");
   }
 }
