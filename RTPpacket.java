@@ -184,6 +184,7 @@ public class RTPpacket{
   //--------------------------
   public void printheader()
   {
+      // test later if declaring it here would do something = int nb;
     //TO DO: uncomment
       /* This is the original code that
     for (int i=0; i < (HEADER_SIZE-4); i++)
